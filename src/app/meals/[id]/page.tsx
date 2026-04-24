@@ -68,6 +68,7 @@ async function MealDetail({ params }: MealDetailProps) {
                 items={[
                     { label: "Home", href: "/" },
                     { label: "Ingredients", href: "/ingredients" },
+                    { label: recipe.strCategory, href: "/ingredient/" + recipe.strCategory },
                     { label: recipe.strMeal }
                 ]}
             />
