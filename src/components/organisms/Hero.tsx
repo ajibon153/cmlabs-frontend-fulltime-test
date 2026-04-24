@@ -19,7 +19,7 @@ export default function Hero() {
                         {/* brand logo with title and tagline */}
 
                         <div className="inline-flex items-center mb-3">
-                            <img src="/img/logo.svg" anlt="Meal-app" className="w-20 h-20 sm:w-24 sm:h-24 object-cover" />
+                            <img src="/img/logo.svg" alt="Meal-app" className="w-20 h-20 sm:w-24 sm:h-24 object-cover" />
                             <h2 className="text-4xl md:text-6xl ml-2 font-semibold tracking-wider text-orange-600 font-shadows">
                                 Meal App
                             </h2>
