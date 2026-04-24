@@ -1,6 +1,6 @@
 ﻿import Link from "next/link";
-import Card from "@/components/Card";
-import Heading from "@/components/Heading";
+import { Breadcrumbs, Card } from "@/components/molecules";
+import { Heading } from "@/components/atoms";
 
 async function getIngredients(name: string) {
     const res = await fetch(`${process.env.API_URL}/filter.php?c=${name}`);
@@ -29,12 +29,19 @@ async function Ingredients({ params }: IngredientsProp) {
         data = await getIngredients(params.name);
     } catch (error) {
         return (
-            <div className="mt-8 md:mt-12">
+            <div className="mt-8 md:mt-12 md:w-11/12 sm:flex sm:flex-wrap md:mx-auto mb-6 px-2">
+                <Breadcrumbs
+                    items={[
+                        { label: "Home", href: "/" },
+                        { label: "Ingredients", href: "/ingredients" },
+                        { label: params.name },
+                    ]}
+                />
                 <Heading title={`${params.name} Ingredients`} />
                 <div className="max-w-3xl mx-auto rounded-xl border border-red-200 bg-red-50 p-6 text-center text-red-700">
                     <h2 className="text-xl font-semibold mb-2">Unable to load Ingredients</h2>
                     <p className="text-sm">
-                        There was an error fetching Ingredients for "{params.name}". Please try again later.
+                        There was an error fetching Ingredients for {params.name}. Please try again later.
                     </p>
                     <Link href="/" className="inline-block mt-4 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 transition">
                         Back to home
@@ -46,12 +53,19 @@ async function Ingredients({ params }: IngredientsProp) {
 
     if (!data?.meals?.length) {
         return (
-            <div className="mt-8 md:mt-12">
-                <Heading title={`${params.name} Ingredients`} />
+            <div className="mt-8 md:mt-12 md:w-11/12 sm:flex sm:flex-wrap md:mx-auto mb-6 px-2">
+                <Breadcrumbs
+                    items={[
+                        { label: "Home", href: "/" },
+                        { label: "Ingredients", href: "/ingredients" },
+                        { label: params.name },
+                    ]}
+                />
+                <Heading title={`${params.name.replace('%20', ' ')} Ingredients`} />
                 <div className="max-w-3xl mx-auto rounded-xl border border-yellow-200 bg-yellow-50 p-6 text-center text-yellow-900">
                     <h2 className="text-xl font-semibold mb-2">No Ingredients found</h2>
                     <p className="text-sm">
-                        We couldn't find any Ingredients for "{params.name}". Try a different ingredient or return to the home page.
+                        We couldn&apos;t find any Ingredients for {params.name.replace('%20', ' ')}. Try a different ingredient or return to the home page.
                     </p>
                     <Link href="/" className="inline-block mt-4 rounded-lg bg-yellow-700 px-4 py-2 text-sm font-medium text-white hover:bg-yellow-800 transition">
                         Back to home
@@ -62,7 +76,15 @@ async function Ingredients({ params }: IngredientsProp) {
     }
 
     return (
-        <div className="mt-8 md:mt-12">
+        <div className="mt-8 md:mt-12 md:w-11/12 sm:flex sm:flex-wrap md:mx-auto mb-6 px-2">
+            <Breadcrumbs
+                items={[
+                    { label: "Home", href: "/" },
+                    { label: "Ingredients", href: "/ingredients" },
+                    { label: params.name },
+                ]}
+            />
+
             <Heading title={`${params.name} Ingredients`} />
 
             <div className="sm:flex sm:flex-wrap md:w-11/12 md:mx-auto mb-6 px-2">

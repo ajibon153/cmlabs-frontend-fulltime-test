@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Rubik, Shadows_Into_Light_Two } from "next/font/google"
 import "./globals.css"
-import Header from "@/components/Header"
+import { Header } from "@/components/organisms"
 
 const rubik = Rubik({
     subsets: ["latin"],

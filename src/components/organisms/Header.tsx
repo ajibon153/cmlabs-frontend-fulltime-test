@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link";
-import Search from "./Search";
+import Search from "../molecules/Search";
 import { useState } from "react";
 
 export default function Header() {

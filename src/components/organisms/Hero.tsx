@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Button from './Button'
+import Button from '../atoms/Button'
 
 export default function Hero() {
 

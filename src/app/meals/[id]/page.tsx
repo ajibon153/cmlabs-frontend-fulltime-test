@@ -1,11 +1,8 @@
-import SubHeading from "@/components/SubHeading"
-import IngredientList from "@/components/IngredientList"
 import Link from "next/link"
-import Badge from "@/components/Badge"
-import Clock from "@/components/Clock"
-import ImageWithSkeleton from "@/components/ImageWithSkeleton"
+import { Badge, Clock, ImageWithSkeleton, SubHeading } from "@/components/atoms"
+import { Breadcrumbs, IngredientList } from "@/components/molecules"
 
-async function getRecipeDetails(id: string) {
+async function getMealDetails(id: string) {
     const res = await fetch(`${process.env.API_URL}/lookup.php?i=${id}`)
 
     if (!res.ok) {
@@ -15,24 +12,28 @@ async function getRecipeDetails(id: string) {
     return res.json()
 }
 
-type RecipeDetailProps = {
+type MealDetailProps = {
     params: { id: string }
 }
 
-async function RecipeDetail({ params }: RecipeDetailProps) {
+async function MealDetail({ params }: MealDetailProps) {
     let data
+    console.log("MealDetail params", params)
 
     try {
-        data = await getRecipeDetails(params.id)
+        data = await getMealDetails(params.id)
     } catch (error) {
         return (
-            <div className="mt-8 md:mt-12">
+            <div className="mt-8 md:mt-12 md:w-11/12 md:mx-auto px-2">
                 <div className="max-w-3xl mx-auto rounded-xl border border-red-200 bg-red-50 p-6 text-center text-red-700">
                     <h1 className="text-2xl font-semibold mb-2">Unable to load recipe</h1>
                     <p className="text-sm mb-4">
                         We couldn&apos;t fetch the recipe details right now. Please try again later.
                     </p>
-                    <Link href="/" className="inline-block rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 transition">
+                    <Link
+                        href="/"
+                        className="inline-block rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 transition"
+                    >
                         Back to home
                     </Link>
                 </div>
@@ -42,13 +43,16 @@ async function RecipeDetail({ params }: RecipeDetailProps) {
 
     if (!data?.meals?.length) {
         return (
-            <div className="mt-8 md:mt-12">
+            <div className="mt-8 md:mt-12 md:w-11/12 md:mx-auto px-2">
                 <div className="max-w-3xl mx-auto rounded-xl border border-yellow-200 bg-yellow-50 p-6 text-center text-yellow-900">
-                    <h1 className="text-2xl font-semibold mb-2">Recipe not found</h1>
+                    <h1 className="text-2xl font-semibold mb-2">Meal not found</h1>
                     <p className="text-sm mb-4">
                         No recipe was found for this id. It may have been removed or the link is invalid.
                     </p>
-                    <Link href="/" className="inline-block rounded-lg bg-yellow-700 px-4 py-2 text-sm font-medium text-white hover:bg-yellow-800 transition">
+                    <Link
+                        href="/"
+                        className="inline-block rounded-lg bg-yellow-700 px-4 py-2 text-sm font-medium text-white hover:bg-yellow-800 transition"
+                    >
                         Back to home
                     </Link>
                 </div>
@@ -59,8 +63,15 @@ async function RecipeDetail({ params }: RecipeDetailProps) {
     const recipe = data.meals[0]
 
     return (
-        <>
-            <article className="lg:w-11/12 lg:mx-auto my-4 md:mt-8 text-gray-800">
+        <div className="mt-8 md:mt-12 md:w-11/12 md:mx-auto px-2">
+            <Breadcrumbs
+                items={[
+                    { label: "Home", href: "/" },
+                    { label: "Ingredients", href: "/ingredients" },
+                    { label: recipe.strMeal }
+                ]}
+            />
+            <article className="lg:mx-auto my-4 md:mt-8 text-gray-800">
                 <div className="md:flex md:flex-wrap mb-4">
                     <div className="w-full md:w-6/12 lg:w-5/12 px-4 sm:my-4">
                         <ImageWithSkeleton
@@ -76,8 +87,7 @@ async function RecipeDetail({ params }: RecipeDetailProps) {
                                 {recipe.strMeal}
                             </h2>
 
-                            <div className="sm:w-2/12 sm:justify-end pt-1 ps-1 print:hidden flex">
-                            </div>
+                            <div className="sm:w-2/12 sm:justify-end pt-1 ps-1 print:hidden flex"></div>
                         </header>
 
                         <div className="mb-6">
@@ -105,8 +115,8 @@ async function RecipeDetail({ params }: RecipeDetailProps) {
                     <p className="py-2 whitespace-pre-wrap leading-relaxed">{recipe.strInstructions}</p>
                 </div>
             </article>
-        </>
+        </div>
     )
 }
 
-export default RecipeDetail
+export default MealDetail

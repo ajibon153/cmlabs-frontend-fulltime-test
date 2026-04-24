@@ -1,13 +1,12 @@
-import Card from "@/components/Card"
-import Heading from "@/components/Heading"
-import Hero from "@/components/Hero"
-import Button from "@/components/Button"
 import Link from "next/link"
+import { Hero } from "@/components/organisms"
+import { Card } from "@/components/molecules"
+import { Button, Heading } from "@/components/atoms"
 
 type Category = {
-  idCategory: number,
-  strCategory: string,
-  strCategoryThumb: string
+    idCategory: number
+    strCategory: string
+    strCategoryThumb: string
 }
 
 type Meal = {
@@ -64,7 +63,7 @@ async function Home() {
                     <Button href="/ingredients" title="See More" />
                 </div>
             </section>
-{/* 
+            {/* 
             <section className="mb-14">
                 <Heading title="See All Delicious Foods" />
 
