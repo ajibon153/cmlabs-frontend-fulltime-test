@@ -36,5 +36,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# foodie notes
-foodie-notes.txt
+# CML-Meal notes
+CML-Meal-notes.txt

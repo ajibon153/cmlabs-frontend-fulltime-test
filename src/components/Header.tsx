@@ -11,15 +11,15 @@ export default function Header() {
 
    return (
 
-      <header className="sticky left-0 top-0 bg-white md:border-b print:hidden shadow-sm md:shadow-none">
+      <header className="sticky left-0 top-0 bg-white md:border-b print:hidden shadow-sm md:shadow-none z-50">
 
          <nav className="flex flex-wrap items-center justify-between py-3.5 md:w-11/12 md:mx-auto">
 
             <div className="md:w-3/12 px-2 md:px-4 tracking-wider font-semibold text-gray-800">
                <Link href="/" className="px-2 flex items-center">
-                  <img src="/img/logo.svg" alt="Foodie" className="w-10 h-10 object-cover inline-block" />
+                  <img src="/img/logo.svg" alt="Meal-app" className="w-10 h-10 object-cover inline-block" />
                   <h2 className="ml-1 text-2xl tracking-wider
-                  text-green-600 tracking-wider font-shadows">Foodie</h2>
+                  text-orange-600 tracking-wider font-shadows">Meal App</h2>
                </Link>
             </div>
 
@@ -41,21 +41,7 @@ export default function Header() {
                   16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/>
                   </svg>
                </button>
-               
-               {/* bookmarks */}
-
-               <Link href="/bookmarks" className="inline-flex items-center text-gray-700 hover:text-gray-800 transition-color mt-1">
-                  
-                  <svg viewBox="0 0 24 24" className="w-6 h-6 md:w-5 md:h-5" stroke="currentColor" strokeWidth="2" fill="none" 
-                  strokeLinecap="round" strokeLinejoin="round">
-                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                  </svg>
-                  
-                  <span className="ms-1 hidden md:inline-block">My Bookmarks</span>
-
-               </Link>
-
-              
+             
 
             </div>
          </nav>

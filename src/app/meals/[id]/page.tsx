@@ -67,7 +67,6 @@ async function RecipeDetail({ params }: RecipeDetailProps) {
                             src={recipe.strMealThumb}
                             alt={recipe.strMeal}
                             className="rounded w-full object-cover max-h-96 md:max-h-none"
-                            priority
                         />
                     </div>
 
@@ -82,7 +81,7 @@ async function RecipeDetail({ params }: RecipeDetailProps) {
                         </header>
 
                         <div className="mb-6">
-                            <Link href={`/dishes/${recipe.strCategory}`}>
+                            <Link href={`/ingredient/${recipe.strCategory}`}>
                                 <Badge title={recipe.strCategory} />
                             </Link>
 

@@ -10,13 +10,13 @@ export default function IngredientList(props: IngredientListProps) {
 
         for (let i = 1; i <= 20; i++) {
 
-            if (props.data.meals[0][`strIngredient${i}`] && props.data.meals[0][`strMeasure${i}`]) {
+            if (props?.data?.meals[0][`strIngredient${i}`] && props?.data?.meals[0][`strMeasure${i}`]) {
 
                 ingredients.push(
                     <>
-                        <span className="font-semibold">{props.data.meals[0][`strMeasure${i}`]}</span>
-                        {(props.data.meals[0][`strMeasure${i}`]).replace(' ', '').length ? ' - ' : ' '}
-                        {props.data.meals[0][`strIngredient${i}`]}
+                        <span className="font-semibold">{props?.data?.meals[0][`strMeasure${i}`]}</span>
+                        {(props?.data?.meals[0][`strMeasure${i}`]).replace(' ', '').length ? ' - ' : ' '}
+                        {props?.data?.meals[0][`strIngredient${i}`]}
                     </>
                 );
             }
