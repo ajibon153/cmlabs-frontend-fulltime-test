@@ -1,29 +1,15 @@
 ﻿import Link from "next/link";
 import { Breadcrumbs, Card } from "@/components/molecules";
 import { Heading } from "@/components/atoms";
+import { filterByCategory } from "@/lib/api";
+import { IngredientPageProps, MealSummary, MealsResponse } from "@/types";
 
 async function getIngredients(name: string) {
-    const res = await fetch(`${process.env.API_URL}/filter.php?c=${name}`);
-
-    if (!res.ok) {
-        throw new Error("Failed to fetch data");
-    }
-
-    return res.json();
+  return filterByCategory(name)
 }
 
-type Food = {
-    idMeal: number;
-    strMeal: string;
-    strMealThumb: string;
-}
-
-type IngredientsProp = {
-    params: { name: string };
-}
-
-async function Ingredients({ params }: IngredientsProp) {
-    let data;
+async function Ingredients({ params }: IngredientPageProps) {
+    let data: MealsResponse<MealSummary>;
 
     try {
         data = await getIngredients(params.name);
@@ -88,8 +74,8 @@ async function Ingredients({ params }: IngredientsProp) {
             <Heading title={`${params.name} Ingredients`} />
 
             <div className="sm:flex sm:flex-wrap md:w-11/12 md:mx-auto mb-6 px-2">
-                {data.meals.map((food: Food) => (
-                    <div key={food.idMeal} className="w-full sm:w-6/12 md:w-4/12 lg:w-3/12 mb-4 px-2">
+                {data.meals.map((food: MealSummary) => (
+                    <div key={food.idMeal} className="w-full sm:w-6/12 md:w-4/12 lg:w-2/12 mb-4 px-2">
                         <Link href={`/meals/${food.idMeal}`}>
                             <Card mealName={food.strMeal} mealImg={food.strMealThumb} />
                         </Link>

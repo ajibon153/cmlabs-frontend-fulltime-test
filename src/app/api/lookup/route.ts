@@ -1,20 +1,17 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server"
+import { lookupMeal } from "@/lib/api"
 
 export async function GET(request: NextRequest) {
+  const id = request.nextUrl.searchParams.get("id")
 
-    const searchParams = request.nextUrl.searchParams;
-    const id = searchParams.get('id');
-    console.log('process.env',process.env);
-    
-    const res = await fetch(`${process.env.API_URL}/lookup.php?i=${id}`);
-    console.log('res',res);
+  if (!id) {
+    return NextResponse.json({ error: "Missing id parameter" }, { status: 400 })
+  }
 
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
-    }
-
-    const data = await res.json();
-
-    return Response.json(data);
-
-};
+  try {
+    const data = await lookupMeal(id)
+    return NextResponse.json(data)
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to fetch meal details" }, { status: 502 })
+  }
+}

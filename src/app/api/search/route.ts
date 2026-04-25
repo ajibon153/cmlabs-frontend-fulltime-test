@@ -1,18 +1,17 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server"
+import { searchMeals } from "@/lib/api"
 
 export async function GET(request: NextRequest) {
+  const query = request.nextUrl.searchParams.get("query")
 
-    const searchParams = request.nextUrl.searchParams;
-    const query = searchParams.get('query');
+  if (!query) {
+    return NextResponse.json({ error: "Missing query parameter" }, { status: 400 })
+  }
 
-    const res = await fetch(`${process.env.API_URL}/search.php?s=${query}`);
-
-    if (!res.ok) {
-        throw new Error('Failed to fetch data')
-    }
-
-    const data = await res.json();
-
-    return Response.json(data);
-
-};
+  try {
+    const data = await searchMeals(query)
+    return NextResponse.json(data)
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to fetch search results" }, { status: 502 })
+  }
+}

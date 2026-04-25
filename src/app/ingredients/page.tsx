@@ -1,27 +1,15 @@
 import Link from "next/link"
 import { Breadcrumbs, Card } from "@/components/molecules"
 import { Heading } from "@/components/atoms"
+import { listIngredients } from "@/lib/api"
+import { IngredientItem, IngredientListResponse } from "@/types"
 
 async function getListIngredients() {
-    const res = await fetch(`${process.env.API_URL}/list.php?i=list`)
-
-    if (!res.ok) {
-        throw new Error("Failed to fetch data")
-    }
-
-    return res.json()
-}
-
-type Meal = {
-    idIngredient: number
-    strIngredient: string
-    strThumb: string
-    strDescription: string
-    strType: any
+  return listIngredients()
 }
 
 export default async function AllIngredients() {
-    let data
+    let data: IngredientListResponse
 
     try {
         data = await getListIngredients()
@@ -71,7 +59,7 @@ export default async function AllIngredients() {
             <Heading title="All Ingredients" />
 
             <div className="flex flex-wrap md:w-11/12 md:mx-auto mb-8 px-2">
-                {data?.meals?.map((meal: Meal) => (
+                {data?.meals?.map((meal: IngredientItem) => (
                     <div key={meal?.idIngredient} className="w-1/2 sm:w-4/12 lg:w-2/12 mb-4 px-2">
                         <Link href="/ingredient/[name]" as={`/ingredient/${meal?.strIngredient}`}>
                             <Card mealName={meal?.strIngredient} mealImg={meal?.strThumb} />

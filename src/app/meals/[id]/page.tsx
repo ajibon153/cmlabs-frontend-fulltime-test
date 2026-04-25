@@ -1,23 +1,15 @@
 import Link from "next/link"
 import { Badge, Clock, ImageWithSkeleton, SubHeading } from "@/components/atoms"
 import { Breadcrumbs, IngredientList } from "@/components/molecules"
+import { lookupMeal } from "@/lib/api"
+import { MealDetailPageProps, MealDetailResponse, RecipeMeal } from "@/types"
 
 async function getMealDetails(id: string) {
-    const res = await fetch(`${process.env.API_URL}/lookup.php?i=${id}`)
-
-    if (!res.ok) {
-        throw new Error("Failed to fetch data")
-    }
-
-    return res.json()
+  return lookupMeal(id)
 }
 
-type MealDetailProps = {
-    params: { id: string }
-}
-
-async function MealDetail({ params }: MealDetailProps) {
-    let data
+async function MealDetail({ params }: MealDetailPageProps) {
+    let data: MealDetailResponse
     console.log("MealDetail params", params)
 
     try {
