@@ -14,7 +14,12 @@
 
 ## If there was an error on npm run dev
 
+- run ```npx update-browserslist-db@latest```
+- delete file package-lock.json, if already installed delete also folder node_modules and .next by run ```Remove-Item "package-lock.json", "node_modules", ".next" -Recurse -Force```
+- before re install, run ```npm cache clean -f``` and ```npm cache clear -f```
 - run ```npm install```
+- run ```npm run dev```
+
 
 ## Things Used
 

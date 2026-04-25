@@ -44,14 +44,14 @@ async function Ingredients({ params }: IngredientPageProps) {
                     items={[
                         { label: "Home", href: "/" },
                         { label: "Ingredients", href: "/ingredients" },
-                        { label: params.name },
+                        { label: params?.name },
                     ]}
                 />
-                <Heading title={`${params.name.replace('%20', ' ')} Ingredients`} />
+                <Heading title={`${params?.name?.replace('%20', ' ')} Ingredients`} />
                 <div className="max-w-3xl mx-auto rounded-xl border border-yellow-200 bg-yellow-50 p-6 text-center text-yellow-900">
                     <h2 className="text-xl font-semibold mb-2">No Ingredients found</h2>
                     <p className="text-sm">
-                        We couldn&apos;t find any Ingredients for {params.name.replace('%20', ' ')}. Try a different ingredient or return to the home page.
+                        We couldn&apos;t find any Ingredients for {params?.name?.replace('%20', ' ')}. Try a different ingredient or return to the home page.
                     </p>
                     <Link href="/" className="inline-block mt-4 rounded-lg bg-yellow-700 px-4 py-2 text-sm font-medium text-white hover:bg-yellow-800 transition">
                         Back to home

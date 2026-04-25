@@ -18,7 +18,7 @@ export default function IngredientList(props: IngredientListProps) {
                 ingredients.push(
                     <>
                         <span className="font-semibold">{measure}</span>
-                        {String(measure).replace(' ', '').length ? ' - ' : ' '}
+                        {String(measure)?.replace(' ', '').length ? ' - ' : ' '}
                         {ingredient}
                     </>
                 );

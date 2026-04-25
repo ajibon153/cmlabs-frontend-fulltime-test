@@ -20,10 +20,10 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
                         {index > 0 && <span className="mx-2 text-gray-400">/</span>}
                         {item.href && index !== items.length - 1 ? (
                             <Link href={item.href} className="hover:text-gray-900">
-                                {item.label.replace('%20', ' ')}
+                                {item?.label?.replace('%20', ' ')}
                             </Link>
                         ) : (
-                            <span className="font-medium text-gray-900">{item.label.replace('%20', ' ')}</span>
+                            <span className="font-medium text-gray-900">{item?.label?.replace('%20', ' ')}</span>
                         )}
                     </li>
                 ))}
