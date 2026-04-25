@@ -4,7 +4,9 @@ if (!BASE_API_URL) {
     throw new Error("Missing API_URL environment variable")
 }
 
-async function fetchMealDb<T = any>(path: string, params?: any): Promise<T> {
+type FetchParams = Record<string, string | number>
+
+async function fetchMealDb<T = any>(path: string, params?: FetchParams): Promise<T> {
     const url = BASE_API_URL + path + (params ? "?" + new URLSearchParams(params).toString() : "")
     
     const res = await fetch(url)
@@ -32,6 +34,6 @@ export async function listIngredients() {
     return fetchMealDb("/list.php", { i: "list" })
 }
 
-export async function filterByCategory(category: string) {
-    return fetchMealDb("/filter.php", { c: category })
+export async function filterByIngredientName(category: string) {    
+    return fetchMealDb("/filter.php", { i: category })
 }

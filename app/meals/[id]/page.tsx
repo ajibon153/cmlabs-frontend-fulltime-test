@@ -10,10 +10,12 @@ async function getMealDetails(id: string) {
 
 async function MealDetail({ params }: MealDetailPageProps) {
     let data: MealDetailResponse
+    const resolvedParams = await params
+    const mealId = resolvedParams.id
     console.log("MealDetail params", params)
 
     try {
-        data = await getMealDetails(params.id)
+        data = await getMealDetails(mealId)
     } catch (error) {
         return (
             <div className="mt-8 md:mt-12 md:w-11/12 md:mx-auto px-2">
