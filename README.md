@@ -12,6 +12,10 @@
 5. Specify ```.env``` variables like ```API_URL``` and ```API_KEY```.
 6. Run ```npm run build``` to build the application and ```npm run dev``` to start the development server.
 
+## If there was an error on npm run dev
+
+- run ```npm install```
+
 ## Things Used
 
 - [Next.js v14](https://nextjs.org) - The React Framework for the Web.

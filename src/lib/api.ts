@@ -4,14 +4,10 @@ if (!BASE_API_URL) {
     throw new Error("Missing API_URL environment variable")
 }
 
-type FetchParams = Record<string, string | number>
-
-async function fetchMealDb<T = any>(path: string, params?: FetchParams): Promise<T> {
+async function fetchMealDb<T = any>(path: string, params?: any): Promise<T> {
     const url = BASE_API_URL + path + (params ? "?" + new URLSearchParams(params).toString() : "")
     
     const res = await fetch(url)
-    console.log('======== url',url);
-    console.log("res fetchMealDb", res)
 
     if (!res?.ok || res?.status !== 200) {
         throw new Error(`TheMealDB request failed with status ${res.status}`)
