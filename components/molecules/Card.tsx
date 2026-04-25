@@ -12,7 +12,7 @@ export default function Card(props: CardProps) {
     const [isLoading, setIsLoading] = useState(false)
 
     return (
-        <article className="group relative overflow-hidden rounded-xl border p-0 hover:shadow hover:border-0 transition-shadow ease-in-out duration-150 w-full h-40 flex items-center justify-center">
+        <article className="group relative overflow-hidden rounded-xl p-0 hover:shadow hover:border border-gray-200 transition-shadow ease-in-out duration-150 w-full h-40 flex items-center justify-center">
             <div className="absolute inset-0 bg-gray-100 animate-pulse" aria-hidden={true} style={{ display: isLoading ? undefined : "none" }} />
             <Image
                 fill
