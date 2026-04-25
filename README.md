@@ -12,23 +12,14 @@
 5. Specify ```.env``` variables like ```API_URL``` and ```API_KEY```.
 6. Run ```npm run build``` to build the application and ```npm run dev``` to start the development server.
 
-## If there was an error on npm run dev
-
-- run ```npx update-browserslist-db@latest```
-- delete file package-lock.json, if already installed delete also folder node_modules and .next by run ```Remove-Item "package-lock.json", "node_modules", ".next" -Recurse -Force```
-- before re install, run ```npm cache clean -f``` and ```npm cache clear -f```
-- run ```npm install```
-- run ```npm run dev```
-
-
 ## Things Used
 
-- [Next.js v14](https://nextjs.org) - The React Framework for the Web.
+- [Next.js v16](https://nextjs.org) - The React Framework for the Web.
 - [React v18](https://react.dev) - The library for web and native user interfaces.
 - [Node v20.19.4](https://react.dev) - The library for web and native user interfaces.
 - [TypeScript](https://www.typescriptlang.org/) - TypeScript is JavaScript with syntax for types.
 - [TheMealDB API](https://www.themealdb.com) - An open, crowd-sourced database of Ingredients from around the world.
-- [Tailwind CSS](https://tailwindcss.com) - A utility-first CSS framework.
+- [Tailwind CSS v4](https://tailwindcss.com) - A utility-first CSS framework.
 - [Atomic Design]
 
 
